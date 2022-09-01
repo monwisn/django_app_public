@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <form method="post">
+            {% crispy form %}
+        </form>
+        <button type="submit" class="btn btn-primary">Save</button>
+    {% else %}
+        You must be <a href="{% url 'authentication:login_user' %}">logged in!</a>
+    {% endif %}
+{% endblock %}

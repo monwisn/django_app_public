@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message|striptags|safe|linebreaksbr }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="row">
+            <div style="text-align: inherit; font-size: medium">
+                <h5 class="page-header"><b>All Newsletters</b></h5><br>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive table-hover">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in control_newsletter_list %}
+                <tr>
+                    <td>{{ item.subject }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.created }}</td>
+                    <td>{{ item.updated }}</td>
+                    <td><a href="{% url 'control_panel:control_newsletter_edit' pk=item.pk %}"><button class="btn btn-warning">Edit</button></a></td>
+                    <td><a href="{% url 'control_panel:control_newsletter_delete' pk=item.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include 'pagination.html' %}
+    <footer>
+    <br>
+        <div style="text-align: right; font-size: medium">
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'control_panel:control_newsletter' %}" class="nav-link">New newsletter</a>
+            </button>
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'main:home_page' %}" class="nav-link">Back</a>
+            </button>
+        </div>
+    </footer>
+    <br><br>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div id="confirmCookie">
+        <p>We use cookies to improve user experience and our service for you.
+            By clicking “Accept“, you agree to our website's cookie use as described in our Cookie Policy.
+            If you do not agree to collection data by cookies, click the 'Decline all' button.
+            For more information on cookies, visit the tab by clicking "More info".
+            <br/>
+            <a class="btn btn-primary pull-right" href="{% url 'main:accept_cookie_policy' %}">{% trans "COOKIE_INFO_OK" %}</a>
+            <br/>
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}Galleries{% endblock %}
+{% block content %}
+    <div class="row">
+        {% for gallery in page_obj %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    {% if gallery.photos.first.status == 2 %}
+                        {% thumbnail gallery.photos.first.image "300x300" crop="center" as im %}
+                            <img class="card-img-top" src="{{ im.url }}" alt="">
+                        {% endthumbnail %}
+                    {% else %}
+                        <img class="card-img-top" width="300" height="300" src="{% static "main/img/gallery-cover-photo.jpg" %}" alt="cover-photo">
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title text-center">{{ gallery.title }}</h4>
+                    </div>
+                    <div style="height:85px;width:305px;text-align:center;border:1px solid #ccc;font:14px/24px Arial, Garamond, Serif;overflow:auto;">
+                        {{ gallery.description|safe}}
+{#                        {{ gallery.description|slice:":50"|safe }}#}
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url "galleries:photos_view" gallery_id=gallery.id %}" class="btn btn-primary">Show</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div style="text-align: right; font-size: medium">
+        <a href="{% url 'galleries:list' %}"><button class="btn btn-secondary">Back to list</button></a>
+    </div>
+    {% include 'pagination.html' %}
+    {% if gallery_form %}
+        <div class="row">
+            <div class="col-6 offset-md-3">
+                <form id="gallery_form" method="post" action=".">
+                    {% csrf_token %}
+                    {{ gallery_form|crispy }}
+                    <input type="submit" name="submit" value="Submit" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

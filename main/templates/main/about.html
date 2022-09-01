@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <h3>ABOUT APPLICATION (incomplete)</h3>
+    <hr>
+    <div class="box box1">
+        <p style="text-align: center"><b>The next step will be to change this application to Django REST</b></p>
+        <p>Functionalities implemented in the application:</p>
+        <ol>
+            <li>Adding new newsletters (edit/delete newsletters, and sending to emails)- control panel</li>
+            <li>Newsletter (subscribe/unsubscribe- with sending email)</li>
+            <li>Deleting newsletter users (subscribers) by the Admin</li>
+            <li>Contact form (with send to me- sending a copy of the message to the user)</li>
+            <li>Login/Log out</li>
+            <li>Lost password-password reset, sending an email with a link to change the password</li>
+            <li>Registration form if the user is not logged in (with registration confirmation email)</li>
+            <li>Editing profile data for logged-in users (edit your profile information, registration information, change password, add profile photo)</li>
+            <li>Blog- posts are automatically sorted from the newest</li>
+            <li>Blog- search button for posts title and description</li>
+            <li>Blog- adding posts with main photo (additionally: you can add file to download and/or more photos)</li>
+            <li>Blog posts order by (sorting posts by date added DESC, date modified DESC, place, author, category)</li>
+            <li>Blog posts like/unlike/likes counter (only logged in users)</li>
+            <li>Blog- information about the currently logged in user</li>
+            <li>Autocomplete author of post (logged-in user)</li>
+            <li>Account- Profile information of the logged-in user (username in brackets)</li>
+            <li>Sending an email to subscribers when a new blog post has been added (only if the status is 'Published')</li>
+            <li>Editing and deleting blog posts by author (only logged-in user, only the author can edit his posts)</li>
+            <li>Deleting posts by author (or admin-admin site)</li>
+            <li>Control panel-only for admin or logged-in users with 'staff member' privileges</li>
+            <li>Control panel-sending push notifications</li>
+            <li>Weather city info (temperature, feels like temp, description)</li>
+            <li>Delete the user account with all blog posts</li>
+            <li>Galleries- add galleries with photos, manage galleries (add, delete photos,
+                set galleries as visible/hidden, edit gallery information)</li>
+            <li>Galleries- manage sending reminders to e-mail- in progress</li>
+            <li>Cloudinary for media management</li>
+            <li>Cookies policy</li>
+            <li>Docker container</li>
+        </ol>
+    </div>
+    {{ values|linebreaks }}
+{% endblock %}

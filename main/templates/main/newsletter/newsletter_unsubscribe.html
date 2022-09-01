@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-lg-offset-3">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags %} class="{{ message.tags }}" {% endif %} role="alert">
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h4>Unsubscribe from the Watering Plants Application newsletter.</h4>
+                    <hr>
+                    <br>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        {{ values|linebreaks }}
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="submit" >Unsubscribe</button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

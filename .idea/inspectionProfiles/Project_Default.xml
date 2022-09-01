@@ -1,0 +1,54 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="9">
+            <item index="0" class="java.lang.String" itemvalue="bnt-close-width" />
+            <item index="1" class="java.lang.String" itemvalue="container" />
+            <item index="2" class="java.lang.String" itemvalue="post" />
+            <item index="3" class="java.lang.String" itemvalue="main" />
+            <item index="4" class="java.lang.String" itemvalue="{%" />
+            <item index="5" class="java.lang.String" itemvalue="text" />
+            <item index="6" class="java.lang.String" itemvalue="href" />
+            <item index="7" class="java.lang.String" itemvalue="float:none;margin:auto;" />
+            <item index="8" class="java.lang.String" itemvalue="text-align" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="14">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="th" />
+            <item index="7" class="java.lang.String" itemvalue="td" />
+            <item index="8" class="java.lang.String" itemvalue="class" />
+            <item index="9" class="java.lang.String" itemvalue="center" />
+            <item index="10" class="java.lang.String" itemvalue="button" />
+            <item index="11" class="java.lang.String" itemvalue="dropdown-menu" />
+            <item index="12" class="java.lang.String" itemvalue="sourcemappingurl" />
+            <item index="13" class="java.lang.String" itemvalue="popper" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="random.random.choice" />
+          <option value="list.__setitem__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

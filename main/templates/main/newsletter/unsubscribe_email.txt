@@ -1,0 +1,18 @@
+{% autoescape off %}
+
+You have successfully unsubscribed from our e-mail list.
+
+We’re sad to see you go, but we respect your choice!
+
+If you'd like to come back to us, you can click on the link below and subscribe to our newsletter again.
+
+Visit our website: {{ 'http' }}://{{ '127.0.0.1:8000' }}{% url 'main:newsletter_sign_up' %}
+
+If it wasn't you, click the 'unsubscribe' button and ignore this email.
+
+We hope we are not parting forever. We wish you a good day and invite you to visit us at any time.
+
+Sincerely,
+The Watering Plants Application Team
+
+{% endautoescape %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if user.id != photo.gallery.author.id %}
+        <div class="card-title text-center">
+            <b>Not your gallery: you must be logged in as a proper user:
+                <a href="{% url 'authentication:login_user' %}" class="btn btn-primary">Sign-in</a>
+            </b>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card card-body">
+                    <p style="text-align: center">Are you sure you want to delete: "{{ photo }}"?</p>
+                    <form action="{% url 'galleries:photo_delete' photo.id  %}" method="POST">
+                        {% csrf_token %}
+                        <p style="text-align: center">
+                            <input class="btn btn-primary" type="submit" value="Confirm">
+                            <a class="btn btn-danger" href="{% url 'galleries:details' gallery_id=photo.gallery.id %}">Cancel</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+

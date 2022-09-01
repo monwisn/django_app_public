@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="">
+  <head>
+    <title>HTML email template</title>
+    <meta name="viewport" content="width = 375, initial-scale = -1">
+  </head>
+  <body style="background-color: cadetblue; font-size: 16px;">
+    <div style="text-align: center;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" style="height:100%; width:600px;">
+          <!-- BEGIN EMAIL -->
+          <tr>
+            <td align="center" bgcolor="#f5f5f5" style="padding:30px">
+               <p style="text-align:left">Hello, <br><br>
+                   We are pleased that we can welcome you among the subscribers of our newsletter.
+                   Now you never miss our weekly newsletter.
+                   <br><br>
+                   We will send you weekly tips on how to care for potted plants and information about new posts
+                   posted on our blog by other users.
+                   <br><br>
+                   If you want, you can unsubscribe at any time, just visit our website.
+               </p>
+                <p style="text-align:left">Visit our website:
+{#                    <a href="{{ 'http' }}://{{ '127.0.0.1:8000' }}"><b>watering-plants-app.com</b></a>#}
+                    <a href="{{ 'https' }}://{{ 'plants-mw.herokuapp.com' }}"><b>watering-plants-app.com</b></a>
+                    <br><br>If it wasn't you, click the 'unsubscribe' button and ignore this email.
+              </p>
+                <p>
+                    <a target="_blank" style="text-decoration: white; background-color: burlywood;
+                    border: black 1px solid; color: firebrick; padding:10px 10px; display:block;"
+                       href="{{ 'https' }}://{{ 'plants-mw.herokuapp.com' }}/{{ 'newsletter/unsubscribe' }}">
+{#                       href="{{ 'http' }}://{{ '127.0.0.1:8000' }}{% url 'main:newsletter_unsubscribe' %}">#}
+                        <strong>Unsubscribe</strong>
+                    </a>
+                </p>
+                <p style="text-align:left">
+                    Sincerely,
+                    <br>The Watering Plants Application Team
+                </p>
+            </td>
+          </tr>
+      </table>
+    </div>
+  </body>
+</html>

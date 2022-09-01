@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="">
+  <head>
+    <title>HTML email template</title>
+    <meta name="viewport" content="width = 375, initial-scale = -1">
+  </head>
+  <body style="background-color: lightgray; font-size: 16px;">
+    <div style="text-align: center;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" style="height:100%; width:600px;">
+          <!-- BEGIN EMAIL -->
+          <tr>
+            <td align="center" bgcolor="#f5f5f5" style="padding:30px">
+               <p style="text-align:left">
+                   <b><i>Your weekly newsletter: </i></b>
+                   <br>
+               </p>
+                <p style="text-align:left">
+                    {{ body|safe }}
+                </p>
+                <br><br>
+                <p style="text-align:left">For more visit our website:
+                    <a href="{{ 'http' }}://{{ '127.0.0.1:8000' }}"><b>watering-plants-app.com</b></a>
+                </p>
+                <p style="text-align:left">
+                    Kind regards,<br>The Watering Plants Application Team
+              </p>
+            </td>
+          </tr>
+      </table>
+    </div>
+  </body>
+</html>

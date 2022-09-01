@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">PK</th>
+                <th scope="col">Post Title</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Author</th>
+                <th scope="col">Category</th>
+                <th scope="col">Likes</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in page_obj %}
+            <tr>
+                <td>{{ item.pk }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.slug }}</td>
+                <td>{{ item.author }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.likes.count }}</td>
+
+                <td><a href="{% url 'blog:delete_post' pk=item.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include 'pagination.html' %}
+    <footer>
+    <br>
+        <div style="text-align: right; font-size: medium">
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'main:home_page' %}" class="nav-link">Back</a>
+            </button>
+        </div>
+    </footer>
+{% endblock %}

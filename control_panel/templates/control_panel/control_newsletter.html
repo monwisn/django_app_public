@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="page-header">Newsletter</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                    {{ message|striptags|safe|linebreaksbr }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {{ form.media }}
+            <br>
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a class="btn btn-dark" href="{% url 'control_panel:control_newsletter_list' %}" role="button">Back</a>
+        </form>
+    </div><br>
+{% endblock %}

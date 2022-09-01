@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Create an Account{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message|striptags|safe|linebreaksbr }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{ register_form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-success">Register</button>
+        <div style="text-align: right; font-size: medium">
+            Already have an account? Login here:
+            <a type="button" class="btn btn-primary" href="{% url 'authentication:login_user' %}">Sign-in</a>
+        </div>
+    </form>
+{% endblock %}

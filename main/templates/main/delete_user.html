@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <div class="form-content my-3 p-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
+                        <div class="card-header justify-content-center">
+                            <h3 class="font-weight-light my-4 text-center">Delete User Profile</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <fieldset class="form-group">
+                                    <p style="text-align: center">
+                                        {% trans 'This will permanently delete your profile and any content you have generated. Confirm to delete account.' %}
+                                    </p><hr>
+                                </fieldset>
+                                <p style="text-align: center">
+                                    <button class="btn btn-danger" type="submit">Confirm to delete</button>
+                                </p>
+                            </form>
+                            <div class="modal-footer">
+                                <a href="{% url 'main:user_profile' %}"><button class="btn btn-secondary" >Back to profile</button></a>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

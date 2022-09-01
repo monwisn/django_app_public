@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="row">
+            <div style="text-align: inherit; font-size: medium">
+                <h5 class="page-header"><b>All users galleries: </b></h5><br>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive table-hover">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr align="center">
+                    <th scope="col">Author</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Number of photos</th>
+                    <th scope="col">Created</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in galleries_list_admin %}
+                <tr align="center">
+                    <td>{{ item.author }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.slug }}</td>
+                    <td>{{ item.photos.count }}</td>
+                    <td>{{ item.created }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <footer>
+        <div style="text-align: right; font-size: medium">
+            <button type="button" class="btn button-pills">
+                <a href="{% url 'main:home_page' %}" class="nav-link">Back</a>
+            </button>
+        </div>
+    </footer>
+    <br><br>
+    {% include 'pagination.html' %}
+{% endblock %}

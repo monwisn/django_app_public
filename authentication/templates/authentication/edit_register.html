@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <h4>Edit your register form:</h4>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ register_form|crispy }}
+            <br/>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br/>
+    </div>
+{% endblock %}

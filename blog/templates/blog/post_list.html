@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{#{% block styles %}#}
+{#    <link href="{% static "/main/css/style.css" %}" rel="stylesheet">#}
+{#{% endblock %}#}
+
+{% block content %}
+    <div style="display: flex; justify-content: flex-end">Current login user: &nbsp;<b>{{ user.username }}</b></div>
+    <div class="container">
+        <div class="header-bottom-set dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Order by:
+            </button>
+            <ul class="dropdown-menu dropdown-menu-left">
+                <li><a class="dropdown-item" href="{% url 'blog:blog_list' %}?orderby=-created">newest</a></li>
+                <li><a class="dropdown-item" href="{% url 'blog:blog_list' %}?orderby=-updated">updated</a></li>
+                <li><a class="dropdown-item" href="{% url 'blog:blog_list' %}?orderby=author">author</a></li>
+                <li><a class="dropdown-item" href="{% url 'blog:blog_list' %}?orderby=place">place</a></li>
+                <li><a class="dropdown-item" href="{% url 'blog:blog_list' %}?orderby=category">category</a></li>
+            </ul>
+        </div>
+        <div style="text-align: center;">
+            <form method="GET" action="{% url 'blog:search' %}">
+                <input name="q" value="{{ request.GET.q }}" placeholder="search..">
+                <button class="btn btn-primary" type="submit" >Search</button>
+                {% csrf_token %}
+                <img src="{% static "img/search.png" %}" alt="logo" width="2.1%">
+            </form>
+        </div>
+        <br>
+        {% for obj in object_list %}
+            {{ values|linebreaks }}
+            <div class="card card-body">
+             <h3 class="card-title"><a href="{% url 'blog:post_detail' slug=obj.slug %}">{{ obj.title|capfirst }}</a></h3>
+                {{ values|linebreaks }}
+                <p class="card-text text-muted h6"><b>Published: </b>{{ obj.created }} by <b>{{ obj.author }}
+                    {% if obj.author.first_name %} ({{ obj.author.first_name }}) {% endif %}</b></p>
+                <p class="card-text text-muted h6"><b>Updated: </b>{{ obj.updated }}</p>
+                <p class="card-text text-muted h6"><b>Location: </b>{{ obj.place }}</p>
+                <div class="card-footer">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-7">
+                            <div class="ratio ratio-4x3">
+                                <img style="border:3px solid black;" src="{{ obj.image.url }}" class="rounded" alt="{{ obj.title }}">
+                                <section oncontextmenu="return false"></section>
+                                <!-- not allowed to copy/download images from 'blog list' page -->
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text"><small>{{ obj.description|slice:":150"|safe }}</small></p>
+                    <a href="{% url 'blog:post_detail' obj.slug %}" class="btn btn-primary">Read more &rarr;</a>
+                </div>
+                {{ values|linebreaks }}
+                <div class="card-footer">
+        {#            <p><b>Author: </b>{{ obj.author }}</p>#}
+                    <p><b><small>Category: </small></b><a href="{% url 'blog:category_detail' slug=obj.category.slug %}">{{ obj.category }}</a></p>
+                </div>
+            </div>
+        {% endfor %}
+        {% include 'pagination.html' %}
+    </div>
+{% endblock %}

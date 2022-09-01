@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="col-md-6">
+        <h4><b>Add your new plants gallery</b></h4>
+        <br>
+        <form action="" method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group" text-align="center">
+            {{ form|crispy }}
+        </div>
+        {{ values|linebreaks }}
+{#            <button type="submit" class="btn btn-primary">Submit</button>#}
+        {% with url_name=request.resolver_match.url_name %}
+            {% if url_name == 'add_gallery' %}
+                                                    <div class="modal-footer">
+
+                <button class="btn btn-primary" type="submit">Save</button>
+                    <a class="btn btn-dark" href="{% url 'main:home_page' %}" role="button">Back</a>
+            {% elif url_name == 'gallery_edit' %}
+                <button class="btn btn-warning" type="submit">Edit</button>
+                    <a class="btn btn-dark" href="{% url 'galleries:list' %}" role="button">Back</a>
+            {% else %}
+                <button class="btn btn-danger" type="submit">Delete</button>
+                    <a class="btn btn-dark" href="{% url 'galleries:list' %}" role="button">Back</a>
+                                                    </div>
+            {% endif %}
+        {% endwith %}
+        </form>
+    </div>
+    {{ values|linebreaks }}
+{% endblock %}
+

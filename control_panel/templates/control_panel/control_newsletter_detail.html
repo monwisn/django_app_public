@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="page-header">
+            <h3>{{ newsletter.subject }}</h3>
+        </div>
+    <br>
+    <div style="text-align: center; font-size: medium">
+        <label>
+            <textarea rows="5" cols="25">{{ newsletter.body }}</textarea>
+        </label>
+    </div>
+    </div>
+    <br>
+        <div style="text-align: inherit; font-size: small">
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'control_panel:control_newsletter' %}" class="btn">New</a>
+            </button>
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'control_panel:control_newsletter_edit' pk=newsletter.pk %}" class="btn">Edit</a>
+            </button>
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'control_panel:control_newsletter_delete' pk=newsletter.pk %}" class="btn">Delete</a>
+            </button>
+        </div>
+    <br><br><br>
+    <footer>
+        <div style="text-align: right; font-size: medium">
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'control_panel:control_newsletter_list' %}" class="nav-link">Back</a>
+            </button>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% with url_name=request.resolver_match.url_name %}
+        {% if url_name == 'new_post' %}
+            <h4><b>Add a new post</b></h4>
+        {% elif url_name == 'edit_post'%}
+            <h4><b>Edit post: </b>{{ post.title }}</h4>
+        {% else %}
+            <h4>Delete post: {{ post.title }}</h4>
+        {% endif %}
+    {% endwith %}<br>
+    <div class="col-md-6">
+    <form action="" method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group" text-align="center">
+            {{ form|crispy }}
+            {{ img_form|crispy }}
+{#            {{ form.media }}  # we can add images to text, bold, italics text etc #}
+        </div>
+        {{ values|linebreaks }}
+        <div class="modal-footer">
+        {% with url_name=request.resolver_match.url_name %}
+            {% if url_name == 'new_post' %}
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a class="btn btn-dark" href="{% url 'main:home_page' %}" role="button">Back</a>
+            {% elif url_name == 'edit_post' %}
+                <button class="btn btn-warning" type="submit">Edit</button>
+                <a class="btn btn-dark" href="{% url 'blog:post_detail' slug=post.slug %}" role="button">Back</a>
+            {% else %}
+                <button class="btn btn-danger" type="submit">Delete</button>
+                <a class="btn btn-dark" href="{% url 'blog:blog_list' %}" role="button">Back</a>
+            {% endif %}
+        {% endwith %}
+        </div>
+    </form>
+    </div>
+    {{ values|linebreaks }}
+{% endblock %}
+

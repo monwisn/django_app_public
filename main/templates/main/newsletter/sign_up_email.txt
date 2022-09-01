@@ -1,0 +1,21 @@
+{% autoescape off %}
+
+Hello,
+
+We are pleased that we can welcome you among the subscribers of our newsletter. Now you never miss our weekly newsletter.
+
+We will send you weekly tips on how to care for potted plants and information about new posts posted on our blog by other users.
+
+If you want, you can unsubscribe at any time, just visit our website.
+
+{{ 'http' }}://{{ '127.0.0.1:8000' }}
+
+If it wasn't you, click the 'unsubscribe' button and ignore this email.
+
+{{ 'http' }}://{{ '127.0.0.1:8000' }}{% url 'main:newsletter_unsubscribe' %}
+
+
+Sincerely,
+The Watering Plants Application Team
+
+{% endautoescape %}

@@ -1,0 +1,267 @@
+body {
+    /*background-color: darkseagreen !important;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    width: 1500px;
+    height: 888px;
+    }
+
+textarea {
+  padding-top:10px;
+  padding-bottom:25px;
+  width:100%;
+  display:block;
+}
+
+section {
+  display: block;
+}
+
+.media {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+}
+
+.media-left {
+  margin-right: 1rem;
+}
+
+.media-content {
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  overflow: auto;
+  text-align: left;
+}
+
+.image.is-60x60 {
+  height: 60px;
+  width: 60px;
+}
+
+.subtitle {
+  color: #4a4a4a;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.title {
+  color: #363636;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.title,
+.subtitle {
+  word-break: break-word;
+}
+
+.datetime {
+    /*display: block;*/
+    font-size: medium;
+}
+
+.bold-card {
+    border: 1px solid dimgrey;
+}
+
+.dropdown-menu {
+    /*background-color: transparent;*/
+    background-color: rgba(255, 255, 255, .7) !important;
+}
+
+    h1 {
+        color: black;
+        text-align:center;
+    }
+    h2 {
+        color: black;
+        text-align: center;
+    }
+    h3 {
+        color: black;
+        text-align: center;
+    }
+
+    p {
+        font-family: Calibri;
+        font-size: 20px;
+    }
+
+.select2-container {
+    min-width: 15em !important;
+    width: 100% !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    color: cornflowerblue;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    color: darkblue;
+}
+
+.box1 {
+    background-color: powderblue;
+    /*color: black;*/
+    /*font-style: normal;*/
+    opacity: .70;
+}
+
+.box2 {
+    background-color: white;
+    /*color: black;*/
+    /*font-style: normal;*/
+    opacity: .90;
+}
+
+.special-card {
+  background-color: transparent;
+  opacity: .85;
+}
+
+.special-cards {
+  background-color: white;
+  opacity: .85;
+}
+
+.social-footer {
+  padding: 1rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.social-footer .social-footer-icons li:last-of-type {
+  margin-right: 0;
+}
+
+.social-footer .social-footer-icons .fa {
+  font-size: 1.3rem;
+  color: #fefefe;
+}
+
+.social-footer .social-footer-icons .fa:hover {
+  color: #4a4a4a;
+  transition: color 0.3s ease-in;
+}
+
+.fa-social {
+  padding: 12px;
+  font-size: 25px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 2px;
+      border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-instagram {
+    background: mediumvioletred;
+    color: white;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.button-pill {
+  background-color: #fefefe;
+  border: none;
+  color: black;
+  padding: 6px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button-pill:hover {
+  background-color: darkseagreen;
+}
+
+.button-pills {
+  background-color: mediumturquoise;
+  border: none;
+  color: black;
+  padding: 4px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button-pills:hover {
+  background-color: lightcyan;
+}
+
+.align-center {
+    text-align: center;
+}
+
+#slider {
+    opacity: 0.85;
+  }
+
+#confirmCookie {
+  background: none repeat scroll 0 0 rgba(0,0,0,0.6);
+  margin: 0;
+  position: relative;
+  transition: all 0.5s ease-out 0s;
+  z-index: 9999;
+  box-shadow: -2px 0 15px #999;
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
+
+#confirmCookie p {
+ padding: 10px;
+}

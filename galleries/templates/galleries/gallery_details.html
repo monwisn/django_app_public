@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block content %}
+    {% if user.id != gallery.author.id %}
+        <div class="card-title text-center">
+            <b>Not your gallery: you must be logged in as a proper user:
+                <a href="{% url 'authentication:login_user' %}" class="btn btn-primary">Sign-in</a>
+            </b>
+        </div>
+    {% else %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message|striptags|safe|linebreaksbr }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div style="text-align: right; font-size: medium">
+        <a href="{% url 'galleries:list' %}"><button class="btn btn-secondary">Back to list</button></a>
+    </div><br>
+        <div class="card card-body">
+            <h2><b>{{ gallery.title }}</b></h2><hr>
+{#            {% if user.id == gallery.author.id %}#}
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="table-responsive table-hover">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                    <tr align="center">
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Slug</th>
+                                        <th scope="col">Short description</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">How often</th>
+                                        <th scope="col">Send reminder</th>
+                                        <th scope="col">Created</th>
+                                        <th scope="col">Updated</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for gallery_image in gallery.photos.all %}
+                                        {% if gallery_image.is_published %}
+                                            <tr align="center">
+                                                <td>{{ gallery_image.title }}</td>
+                                                <td>{{ gallery_image.slug }}</td>
+                                                <td>{{ gallery_image.short_description }}</td>
+                                                <td>{{ gallery_image.get_status_display }}</td>
+                                                <td>{{ gallery_image.how_often }}</td>
+                                                <td>{{ gallery_image.send_reminder }}</td>
+                                                <td>{{ gallery_image.created }}</td>
+                                                <td>{{ gallery_image.updated }}</td>
+                                                <td><a href="{% url 'galleries:photo_edit' pk=gallery_image.pk %}"><button class="btn btn-warning">Edit</button></a></td>
+                                                <td><a href="{% url 'galleries:photo_delete' pk=gallery_image.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{#            {% endif %}#}
+            <br/>
+        </div>
+        {{ values|linebreaks }}
+    {% endif %}
+{% endblock %}

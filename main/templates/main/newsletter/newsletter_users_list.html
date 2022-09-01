@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message|striptags|safe|linebreaksbr }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div style="text-align: inherit; font-size: medium">
+        <h5 class="page-header"><b>Newsletter users</b></h5><br>
+    </div>
+{#    <div class="table-responsive table-hover">#}
+        <table class="table">
+            <thead class="thead-black">
+                <tr>
+                    <th>Email</th>
+                    <th>Date Joined</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in newsletter_users %}
+                <tr>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.joined }}</td>
+                    <td><a href="{% url 'main:newsletter_users_delete' item.id %}"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{#        </div>#}
+    {% include 'pagination.html' %}
+    <footer>
+    <br>
+        <div style="text-align: right; font-size: medium">
+            <button type="button" class="btn btn-light">
+                <a href="{% url 'main:home_page' %}" class="nav-link">Back</a>
+            </button>
+        </div>
+    </footer>
+{% endblock %}

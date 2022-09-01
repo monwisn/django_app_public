@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+
+{% block content %}
+    <div style="text-align: right; font-size: medium">
+        <a href="{% url 'blog:blog_list' %}"><button class="btn btn-secondary">Back to list</button></a>
+    </div><br>
+    <div class="card card-body">
+        <h3><b>{{ post.title }}</b></h3>
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <div class="button-box col-lg-12">  <! -- buttons next to each other ––>
+                    <a href="{% url 'blog:edit_post' pk=post.pk %}"><button class="btn btn-primary">Edit</button></a>
+                    <a href="{% url 'blog:delete_post' pk=post.pk %}"><button class="btn btn-danger" >Delete</button></a>
+                </div>
+            {% endif %}
+        {% endif %}
+        {{ values|linebreaks }}
+        <div class="card card-body">
+            <small><b>Published: </b>{{ post.created }}</small>
+            {% if post.updated %}
+            {{ value|linebreaks }}
+                <small><b>Updated: </b>{{ post.updated }}</small>
+        </div>
+        <div class="card card-footer">
+{#            <b>Location: </b>{{ post.place }}#}
+{#            {{ value|linebreaks }}#}
+            {% endif %}
+                {{ post.description|safe }}
+        </div>
+        {{ value|linebreaks }}
+        {% if post.image %}
+            {% thumbnail post.image "x320" as im %}
+                <p style="text-align:center"><a href="{{ post.image.url }}">
+                    <img style="border:3px solid black;" src="{{ im.url }}" alt="" title="image for post: {{ post.pk }}"/></a>
+                </p>
+            {% endthumbnail %}
+        {% endif %}
+        {% if post.file %}
+            <div>
+                <a href="{{ post.file.url }}">
+                    <button class="btn btn-primary"><i class="fa fa-download"></i> Download attached file </button>
+                </a>
+            </div>
+        {% endif %}
+
+{#    multiple images #}
+        {{ value|linebreaks }}
+        {% if post.images.exists %}
+            <b>More images:</b><br>
+            {% for image in post.images.all %}
+                {% thumbnail image.images "x320" as img %}
+                    <p style="text-align:center">
+                        <a href="{{ image.images.url }}">
+                            <img style="border:3px solid black;" src="{{ img.url }}" alt="images"/>
+                        </a>
+                    </p>
+                {% endthumbnail %}
+            {% endfor %}
+        {% endif %}
+        <br/><br/>
+        <hr>
+        <br/>
+        <form action="{% url 'blog:like_post' pk=post.pk %}" method="POST">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                {% if request.user in post.likes.all %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger">Unlike</button>
+                {% else %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+                {% endif %}
+            {% else %}
+                <small>You must be <a href="{% url 'authentication:login_user' %}">logged in </a>to like</small>
+            {% endif %}
+            - {{ post.num_likes }} Likes
+        </form>
+    </div>
+    {{ values|linebreaks }}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="vapid-key" content="{{ vapid_key }}">
+    {% if not user.is_superuser %}
+        <p>No access to this page</p>
+    {% else %}
+        <meta name="user_id" content="{{ user.id }}">
+    <title>Admin: {{ user.username }}</title>
+
+    <!-- Web push notification -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <link href="{% static 'main/css/styles.css' %}" rel="stylesheet">
+</head>
+
+<body id="bg" style="background-image: url('{% static "main/img/background.png" %}');">
+<div>
+    <form id="send-push__form">
+        <h3 class="header">Send a push notification</h3>
+        <p class="error"></p>
+        <input type="text" name="head" placeholder="Enter the title: ">
+        <textarea name="body" id="" cols="30" rows="10" placeholder="Enter your content to send: "></textarea>
+        <button>Send notification</button>
+    </form>
+</div>
+   <script src="{% static 'main/js/registerSw.js' %}"></script>
+   <script src="{% static 'main/js/site.js' %}"></script>
+</body>
+{% endif %}
+</html>

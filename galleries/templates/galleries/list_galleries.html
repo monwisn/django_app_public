@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message|striptags|safe|linebreaksbr }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="row">
+            <div style="text-align: inherit; font-size: medium">
+                <h5 class="page-header"><b>All galleries: </b></h5><br>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive table-hover">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr align="center">
+                    <th scope="col">Title</th>
+                    <th scope="col">Number of photos</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">View galleries</th>
+                    <th scope="col">Add Photos</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in gallery %}
+                <tr style="text-align: center">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.photos.count }}</td>
+                    <td>{{ item.created }}</td>
+                    <td>{{ item.updated }}</td>
+                    <td>{{ item.get_status_display }}</td>
+                    {% if item.status == 1 %}
+                        <td><button class="btn btn-info" disabled>Gallery is hidden</button></td>
+                    {% else %}
+                        <td><a href="{% url 'galleries:details' gallery_id=item.pk %}"><button class="btn btn-info">Gallery details</button></a></td>
+                    {% endif %}
+                    <td><a href="{% url 'galleries:add_photos' gallery_id=item.pk %}"><button class="btn btn-primary">Add photos</button></a></td>
+                    <td><a href="{% url 'galleries:gallery_edit' pk=item.pk %}"><button class="btn btn-warning">Edit</button></a></td>
+                    <td><a href="{% url 'galleries:gallery_delete' pk=item.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <footer>
+        <div style="text-align: right; font-size: medium">
+            <button type="button" class="btn button-pills">
+                <a href="{% url 'galleries:add_gallery' %}" class="nav-link">New gallery</a>
+            </button>
+            <button type="button" class="btn button-pills">
+                <a href="{% url 'main:home_page' %}" class="nav-link">Back</a>
+            </button>
+        </div>
+    </footer>
+    <br><br>
+    {% include 'pagination.html' %}
+{% endblock %}

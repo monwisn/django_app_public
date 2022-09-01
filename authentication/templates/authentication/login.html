@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                {{ message|striptags|safe|linebreaksbr }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form id="login-form" method="post"
+                  action="{% url 'authentication:login_user' %}">
+                {% csrf_token %}
+                <table class="table">
+                        <tr>
+                        <td><label for="id_username">Username</label></td>
+                        <td><input id="id_username" name="username"
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_password">Password</label></td>
+                        <td><input id="id_password" name="password"
+                                   type="password" class="form-control"></td>
+                    </tr>
+                </table>
+                {% if form.errors %}
+                    <p class="label label-danger">
+                        Your username and password didn't match. Please try again.
+                    </p>
+                {% endif %}
+                <input type="submit" value="Sign-in"
+                       class="btn btn-success pull-right" />
+                <input type="hidden" name="next" value="{{ next }}" />
+                <a class="btn btn-primary me-1" href="{% url 'authentication:password_reset' %}" role="button">Lost password?</a>
+            </form>
+        </div>
+    </div>
+{#        <p>#}
+            <div style="text-align: right; font-size: medium" >
+                Don't have an account? Create here:
+                <a type="button" class="btn btn-primary" href="{% url "authentication:register" %}">Sign-up </a>
+            </div>
+{#        </p>#}
+{% endblock %}
+
+
+
+
+
+

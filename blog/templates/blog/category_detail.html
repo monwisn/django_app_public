@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Category: <b>{{ category.title }}</b></h1><br>
+    <div class="card card-body">
+        <p><i><b>Description: </b>{{ category.description }}</i></p>
+    </div>
+    <hr>
+    <div class="card card-body">
+        {% for item in post %}
+            <div class="card card-body">
+                <h4><b>{{ item.title }}</b></h4>
+                {{ item.description|truncatechars:50 }}
+                {{ value|linebreaks }}
+            </div>
+        {% endfor %}
+    </div><br>
+    <div style="text-align: right; font-size: medium">
+        <a href="{% url 'blog:blog_list' %}"><button class="btn btn-secondary">Back to list</button></a>
+    </div>
+{% endblock %}
